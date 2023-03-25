@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BudgetHelperApplication.OverviewPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Overview"
+             xmlns:viewmodels="clr-namespace:BudgetHelperApplication.ViewModels"
+             x:DataType="viewmodels:AccountViewModel"
+             >
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout>
+        <VerticalStackLayout IsVisible="{Binding TabIsVisible}">
+            <Frame IsVisible="{Binding TabIsVisible}">
+                <VerticalStackLayout >
+                    <Label Text="Bank"
+               />
+                    <Entry IsReadOnly="True"
+               Text="{Binding Deposit}"
+               IsVisible="{Binding TabIsVisible}"
+                           ToolTipProperties.Text="This Represents the balance for this account."/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame IsVisible="{Binding TabIsVisible}">
+                <VerticalStackLayout >
+                    <Label Text="Wallet"
+               IsVisible="{Binding TabIsVisible}"/>
+                    <Entry IsReadOnly="True"
+               Text="{Binding Wallet}"
+                           ToolTipProperties.Text="This represents the amount that is safe to spend for
+                           today. If it is negative then the daily allowance should be the spending limit for each day. The daily allowance is added to the wallet each day."
+               >
+                        <Entry.Behaviors>
+                            <toolkit:NumericValidationBehavior
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    ValidStyle="{StaticResource ValidEntryStyle}"
+                    Flags="ValidateOnValueChanged"
+                    MinimumValue="0.0"
+                    
+                    
+                    
+                    />
+                        </Entry.Behaviors>
+                    </Entry>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame IsVisible="{Binding TabIsVisible}">
+                <VerticalStackLayout >
+                    <Label Text="Daily Allowance"
+               IsVisible="{Binding TabIsVisible}"/>
+                    <Entry IsReadOnly="True"
+               Text="{Binding DailyAllowance}"
+                           ToolTipProperties.Text="This represents the amount that is added to the wallet each day."
+               >
+                        <Entry.Behaviors>
+                            <toolkit:NumericValidationBehavior
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    ValidStyle="{StaticResource ValidEntryStyle}"
+                    Flags="ValidateOnValueChanged"
+                    MinimumValue="0.0"
+                    
+                    
+                    
+                    />
+                        </Entry.Behaviors>
+                    </Entry>
+                </VerticalStackLayout>
+            </Frame>
+            <Button Text="Adjust Balance"
+                Clicked="Button_Clicked"
+                IsVisible="{Binding TabIsVisible}"
+                    ToolTipProperties.Text="Click here to change the bank balance."
+                />
+        </VerticalStackLayout>
+        <Frame IsVisible="{Binding TabIsNotVisible}">
+            <Label Text="No account selected"/>
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>

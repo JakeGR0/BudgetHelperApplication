@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BudgetHelperApplication.DeleteAccountPage"
+             Title="Delete Accounts"
+             xmlns:viewmodels="clr-namespace:BudgetHelperApplication.ViewModels"
+             xmlns:Datatype="viewmodels:ShellViewModel"
+             xmlns:models="clr-namespace:BudgetHelperApplication.Models"
+             NavigatedTo="ContentPage_NavigatedTo"
+             >
+
+    <ScrollView>
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Accounts}"
+                            SelectionMode="None"
+                            
+                            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Account">
+                        <Frame >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Tapped="TapGestureRecognizer_Tapped_1"
+                                                      CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding Name}"
+                                   >
+
+                            </Label>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button x:DataType="viewmodels:ShellViewModel"
+                    Text="Delete"
+                    Command="{Binding DeleteCommand}"
+                
+                    >
+                    
+                
+            </Button>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

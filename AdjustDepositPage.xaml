@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="BudgetHelperApplication.AdjustDepositPage"
+             Title="Adjust Deposit"
+             xmlns:viewmodel="clr-namespace:BudgetHelperApplication.ViewModels"
+             x:DataType="viewmodel:AccountViewModel"
+             NavigatedTo="ContentPage_NavigatedTo"
+             >
+
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <VerticalStackLayout IsVisible="{Binding TabIsVisible}">
+            <Frame>
+                <HorizontalStackLayout>
+                    <Label Text="Old deposit:"
+               />
+                    <Label Text="{Binding Deposit}"
+               />
+                </HorizontalStackLayout>
+            </Frame>
+            <Frame>
+                <Entry Keyboard="Numeric"
+               Placeholder="Enter new deposit"
+               Text="{Binding NewDeposit}"
+              
+               >
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    ValidStyle="{StaticResource ValidEntryStyle}"
+                    Flags="ValidateOnValueChanged"
+                    MinimumValue="0.0"
+                    MaximumValue="9.22337204E16"
+                    MaximumDecimalPlaces="2"
+                    
+                    />
+                    </Entry.Behaviors>
+                </Entry>
+            </Frame>
+
+            <Button Text="Update"
+            Command="{Binding AdjustDepositCommand}"
+                IsEnabled="{Binding NewDepositIsValid}"
+                    Clicked="Button_Clicked"
+               
+                >
+
+            </Button>
+        </VerticalStackLayout>
+        <Frame IsVisible="{Binding TabIsNotVisible}">
+            <Label Text="No account selected"/>
+        </Frame>
+    </StackLayout>
+
+</ContentPage>
+
+
+             

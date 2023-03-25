@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BudgetHelperApplication.DeleteRegularTransaction"
+             Title="DeleteRegularTransaction"
+             xmlns:viewmodel="clr-namespace:BudgetHelperApplication.ViewModels"
+             xmlns:models="clr-namespace:BudgetHelperApplication.Models"
+             x:DataType="viewmodel:AccountViewModel"
+             NavigatedTo="ContentPage_NavigatedTo"
+             >
+    <ScrollView>
+        <VerticalStackLayout>
+            <VerticalStackLayout IsVisible="{Binding TabIsVisible}">
+
+
+                <CollectionView ItemsSource="{Binding Income}"
+                    SelectionMode="None"
+                    
+                    >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:RegularTransaction">
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                          Tapped="TapGestureRecognizer_Tapped"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+
+
+                                <Label
+                        Text="{Binding Name}">
+
+                                </Label>
+                            </Frame>
+
+
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+                <Button Text="Delete"
+                    Command="{Binding DeleteCommand}"
+                        Clicked="Button_Clicked"/>
+            </VerticalStackLayout>
+            <Frame IsVisible="{Binding TabIsNotVisible}">
+                <Label Text="No account selected"/>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

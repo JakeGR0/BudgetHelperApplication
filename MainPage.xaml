@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BudgetHelperApplication.MainPage"
+             xmlns:viewmodels="clr-namespace:BudgetHelperApplication.ViewModels"
+             x:DataType="viewmodels:ShellViewModel"
+             xmlns:models="clr-namespace:BudgetHelperApplication.Models"
+             
+             Title="Select Account">
+
+    <ScrollView MaximumHeightRequest="300">
+        <VerticalStackLayout
+            VerticalOptions="StartAndExpand">
+
+            <CollectionView ItemsSource="{Binding Accounts}"
+                    SelectionMode="None"
+                    SelectionChanged="CollectionView_SelectionChanged"
+                            EmptyView="Click add account to get started"
+                            VerticalOptions="StartAndExpand"
+                          
+                    
+                    >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Account">
+                        <Frame VerticalOptions="Start"
+               >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Tapped="TapGestureRecognizer_Tapped"
+                                                      CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+
+
+                            <Label
+                        Text="{Binding Name}"
+                                HorizontalOptions="CenterAndExpand"
+                                
+               >
+
+                            </Label>
+                        </Frame>
+
+
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                <Button Text="Add Account"
+                    Clicked="GoToAddAccountPage"
+                    />
+                <Button Text="Delete Accounts"
+                    Clicked="GoToDeleteAccountPage"
+                    
+                    />
+            </HorizontalStackLayout>
+
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+
+</ContentPage>
