@@ -181,7 +181,7 @@ namespace BudgetHelperApplication.ViewModels
                     tempIn.Add(x);
                 }
                 Income = tempIn;
-            });;
+            });
             await dAO.GetRegularTransactionsAsync(AccountId, false).ContinueWith((t) =>
             {
                 var tempOut = new ObservableCollection<RegularTransaction>();
@@ -190,7 +190,7 @@ namespace BudgetHelperApplication.ViewModels
                     tempOut.Add(x);
                 }
                 Outgoing = tempOut;
-            });;
+            });
 
             
 
@@ -348,7 +348,7 @@ namespace BudgetHelperApplication.ViewModels
                     if (x != highestIncome && tempTrans.LPDate < highestIncome.LPDate && NpDate(tempTrans) >= NpDate(highestIncome))
                     {
                         int days = (NpDate(highestIncome) - tempTrans.LPDate).Days;
-                        temp += dailyValue(x) * days;
+                        temp += dailyValue(x) * (days-1);
                     }
                     else if (x != highestIncome)
                     {
@@ -372,7 +372,7 @@ namespace BudgetHelperApplication.ViewModels
                         tempTrans.LPDate = NpDate(tempTrans);
                     }
                     int days = (NpDate(highestIncome) - tempTrans.LPDate).Days;
-                    temp -= dailyValue(x) * days;
+                    temp -= dailyValue(x) * (days - 1);
                 }
 
                 return temp;
@@ -410,12 +410,12 @@ namespace BudgetHelperApplication.ViewModels
             await dAO.SaveAccountAsync(CurrentAccount);
 
             
-            var task = dAO.GetAccountAsync(AccountId);
-
-            await task.ContinueWith((t) =>
+            await dAO.GetAccountAsync(AccountId).ContinueWith((t) =>
             {
                 CurrentAccount = t.Result;
             });
+
+            
 
             NewDeposit = "";
 

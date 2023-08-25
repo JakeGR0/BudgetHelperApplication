@@ -32,10 +32,13 @@
 
 	<ItemGroup>
     <!-- App Icon -->
-    <MauiIcon Include="Resources\Images\piggy_bank.svg" BaseSize="960,960" />
+    <MauiIcon Include="Resources\AppIcon\piggy_bank.svg" BaseSize="8,8" Color="#FFFFFF" Resize="true">
+      <BaseSize>960,960</BaseSize>
+    </MauiIcon>
+    
 
     <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Images\piggy_bank.svg" Color="#FDDDE6" BaseSize="960,960" />
+    <MauiSplashScreen Include="Resources\Images\piggy_bank.svg" Color="#FDDDE6" BaseSize="8,8" Resize="true" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -50,6 +53,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\piggy_bank.svg" />
 	  <None Remove="Resources\Images\piggyBank.svg" />
 	  <None Remove="Resources\Images\piggy_bank.svg" />
 	</ItemGroup>
