@@ -5,62 +5,81 @@
              xmlns:viewmodels="clr-namespace:BudgetHelperApplication.ViewModels"
              x:DataType="viewmodels:ShellViewModel"
              xmlns:models="clr-namespace:BudgetHelperApplication.Models"
+             Padding="0"
              
              Title="Select Account">
 
-    <ScrollView MaximumHeightRequest="300">
-        <VerticalStackLayout
-            VerticalOptions="StartAndExpand">
+    <FlexLayout Direction="Column"
+                VerticalOptions="Fill"
+                JustifyContent="SpaceBetween"
+                
+                
+                Padding="0"
+                Margin="0">
+        <ScrollView 
+                MaximumHeightRequest="400"
+                Margin="0"
+                >
+            
 
-            <CollectionView ItemsSource="{Binding Accounts}"
+                <CollectionView ItemsSource="{Binding Accounts}"
                     SelectionMode="None"
                     SelectionChanged="CollectionView_SelectionChanged"
                             EmptyView="Click add account to get started"
-                            VerticalOptions="StartAndExpand"
+                            
                           
                     
                     >
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Account">
-                        <Frame VerticalOptions="Start"
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Account">
+                            <Frame VerticalOptions="Start"
                >
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
                                                       Tapped="TapGestureRecognizer_Tapped"
                                                       CommandParameter="{Binding .}"/>
-                            </Frame.GestureRecognizers>
+                                </Frame.GestureRecognizers>
 
 
-                            <Label
+                                <Label
                         Text="{Binding Name}"
                                 HorizontalOptions="CenterAndExpand"
                                 
                >
 
-                            </Label>
-                        </Frame>
+                                </Label>
+                            </Frame>
 
 
 
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
 
-            </CollectionView>
-            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-                <Button Text="Add Account"
-                    Clicked="GoToAddAccountPage"
-                    />
-                <Button Text="Delete Accounts"
-                    Clicked="GoToDeleteAccountPage"
+                </CollectionView>
+                
+
+
+
+
+            
+        </ScrollView>
+
+        <HorizontalStackLayout
+            HorizontalOptions="Center">
+
+            
+            <Button 
+                Text="Add Account"
+            Clicked="GoToAddAccountPage"
+                
+            />
+            <Button Text="Delete Accounts"
+            Clicked="GoToDeleteAccountPage"
                     
-                    />
-            </HorizontalStackLayout>
-
-
-
-
-        </VerticalStackLayout>
-    </ScrollView>
+                    
+            />
+        </HorizontalStackLayout>
+    </FlexLayout>
 
 
 

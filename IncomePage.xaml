@@ -7,37 +7,43 @@
              xmlns:models="clr-namespace:BudgetHelperApplication.Models"
              x:DataType="viewmodel:AccountViewModel"
              >
-    <VerticalStackLayout>
-        <Frame IsVisible="{Binding TabIsVisible}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+    <FlexLayout Direction="Column"
+                VerticalOptions="Fill"
+                JustifyContent="SpaceBetween">
+        <VerticalStackLayout MaximumHeightRequest="400">
+            <Frame IsVisible="{Binding TabIsNotVisible}">
+                <Label Text="No account selected"/>
+            </Frame>
 
-                </Grid.ColumnDefinitions>
-                <Label  Text="Name"/>
-                <Label Grid.Column="1"
+            <Frame IsVisible="{Binding TabIsVisible}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Label  Text="Name"/>
+                    <Label Grid.Column="1"
                                            Text="Amount"/>
-                <Label Grid.Column="2"
+                    <Label Grid.Column="2"
                                            Text="Date of last payment"/>
-                <Label Grid.Column="3"
+                    <Label Grid.Column="3"
                                            Text="Number of.."/>
-                <Label Grid.Column="4"
+                    <Label Grid.Column="4"
                                            Text="Frequency Unit"/>
-            </Grid>
-        </Frame>
+                </Grid>
+            </Frame>
 
 
 
-        <VerticalStackLayout IsVisible="{Binding TabIsVisible}"
-                             >
-            <ScrollView HeightRequest="300">
+
+            <ScrollView VerticalOptions="Fill">
 
                 <CollectionView ItemsSource="{Binding Income}"
                     SelectionMode="None"
@@ -92,23 +98,22 @@
 
                 </CollectionView>
             </ScrollView>
-            <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
-                                   VerticalOptions="EndAndExpand">
-                <Button Text="Add Income"
+        </VerticalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center"  
+                               IsVisible="{Binding TabIsVisible}">
+            <Button Text="Add Income"
                     Clicked="GoToAddRegularTransactionPage"/>
-                <Button Text="Delete Income"
+            <Button Text="Delete Income"
                     Clicked="GoToDeleteRegularTransactionPage"
                     />
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
-        <Frame IsVisible="{Binding TabIsNotVisible}">
-            <Label Text="No account selected"/>
-        </Frame>
+        </HorizontalStackLayout>
+
+        
 
 
 
 
 
 
-    </VerticalStackLayout>
+    </FlexLayout>
 </ContentPage>

@@ -19,7 +19,7 @@
     </ContentPage.Resources>
 
     <StackLayout>
-        <VerticalStackLayout IsVisible="{Binding TabIsVisible}">
+        <FlexLayout Direction="Column" IsVisible="{Binding TabIsVisible}">
             <Frame>
                 <Entry Keyboard="Text"
                Placeholder="Enter Outgoing name"
@@ -97,7 +97,7 @@
                 >
 
             </Button>
-        </VerticalStackLayout>
+        </FlexLayout>
         <Frame IsVisible="{Binding TabIsNotVisible}">
             <Label Text="No account selected"/>
         </Frame>

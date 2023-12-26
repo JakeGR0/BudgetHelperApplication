@@ -17,29 +17,37 @@
         </Style>
     </ContentPage.Resources>
 
-    <VerticalStackLayout>
-        <VerticalStackLayout IsVisible="{Binding TabIsVisible}">
+    
+        <FlexLayout Direction="Column"
+                VerticalOptions="Fill"
+                JustifyContent="SpaceBetween"
+                    >
+            <VerticalStackLayout MaximumHeightRequest="400">
+            <Frame IsVisible="{Binding TabIsNotVisible}">
+                <Label Text="No account selected"/>
+            </Frame>
+
             <Frame IsVisible="{Binding TabIsVisible}">
-                <VerticalStackLayout >
-                    <Label Text="Bank"
+                    <VerticalStackLayout >
+                        <Label Text="Bank"
                />
-                    <Entry IsReadOnly="True"
+                        <Entry IsReadOnly="True"
                Text="{Binding Deposit}"
                IsVisible="{Binding TabIsVisible}"
                            ToolTipProperties.Text="This Represents the balance for this account."/>
-                </VerticalStackLayout>
-            </Frame>
-            <Frame IsVisible="{Binding TabIsVisible}">
-                <VerticalStackLayout >
-                    <Label Text="Wallet"
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame IsVisible="{Binding TabIsVisible}">
+                    <VerticalStackLayout >
+                        <Label Text="Wallet"
                IsVisible="{Binding TabIsVisible}"/>
-                    <Entry IsReadOnly="True"
+                        <Entry IsReadOnly="True"
                Text="{Binding Wallet}"
                            ToolTipProperties.Text="This represents the amount that is safe to spend for
                            today. If it is negative then the daily allowance should be the spending limit for each day. The daily allowance is added to the wallet each day."
                >
-                        <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior
+                            <Entry.Behaviors>
+                                <toolkit:NumericValidationBehavior
                     InvalidStyle="{StaticResource InvalidEntryStyle}"
                     ValidStyle="{StaticResource ValidEntryStyle}"
                     Flags="ValidateOnValueChanged"
@@ -48,20 +56,20 @@
                     
                     
                     />
-                        </Entry.Behaviors>
-                    </Entry>
-                </VerticalStackLayout>
-            </Frame>
-            <Frame IsVisible="{Binding TabIsVisible}">
-                <VerticalStackLayout >
-                    <Label Text="Daily Allowance"
+                            </Entry.Behaviors>
+                        </Entry>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame IsVisible="{Binding TabIsVisible}">
+                    <VerticalStackLayout >
+                        <Label Text="Daily Allowance"
                IsVisible="{Binding TabIsVisible}"/>
-                    <Entry IsReadOnly="True"
+                        <Entry IsReadOnly="True"
                Text="{Binding DailyAllowance}"
                            ToolTipProperties.Text="This represents the amount that is added to the wallet each day."
                >
-                        <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior
+                            <Entry.Behaviors>
+                                <toolkit:NumericValidationBehavior
                     InvalidStyle="{StaticResource InvalidEntryStyle}"
                     ValidStyle="{StaticResource ValidEntryStyle}"
                     Flags="ValidateOnValueChanged"
@@ -70,19 +78,20 @@
                     
                     
                     />
-                        </Entry.Behaviors>
-                    </Entry>
-                </VerticalStackLayout>
-            </Frame>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+            
             <Button Text="Adjust Balance"
                 Clicked="Button_Clicked"
                 IsVisible="{Binding TabIsVisible}"
                     ToolTipProperties.Text="Click here to change the bank balance."
                 />
-        </VerticalStackLayout>
-        <Frame IsVisible="{Binding TabIsNotVisible}">
-            <Label Text="No account selected"/>
-        </Frame>
+        
+    </FlexLayout>
+        
 
-    </VerticalStackLayout>
+    
 </ContentPage>

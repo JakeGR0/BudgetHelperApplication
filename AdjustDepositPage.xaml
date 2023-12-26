@@ -19,15 +19,21 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout>
-        <VerticalStackLayout IsVisible="{Binding TabIsVisible}">
+
+    <FlexLayout Direction="Column"
+                VerticalOptions="Fill"
+                JustifyContent="SpaceBetween">
+        <VerticalStackLayout MaximumHeightRequest="400">
+            <Frame IsVisible="{Binding TabIsNotVisible}">
+                <Label Text="No account selected"/>
+            </Frame>
             <Frame>
-                <HorizontalStackLayout>
+                <VerticalStackLayout >
                     <Label Text="Old deposit:"
                />
                     <Label Text="{Binding Deposit}"
                />
-                </HorizontalStackLayout>
+                </VerticalStackLayout>
             </Frame>
             <Frame>
                 <Entry Keyboard="Numeric"
@@ -48,20 +54,20 @@
                     </Entry.Behaviors>
                 </Entry>
             </Frame>
+        </VerticalStackLayout>
 
-            <Button Text="Update"
+        <Button Text="Update"
             Command="{Binding AdjustDepositCommand}"
                 IsEnabled="{Binding NewDepositIsValid}"
                     Clicked="Button_Clicked"
                
                 >
 
-            </Button>
-        </VerticalStackLayout>
-        <Frame IsVisible="{Binding TabIsNotVisible}">
-            <Label Text="No account selected"/>
-        </Frame>
-    </StackLayout>
+        </Button>
+
+        
+    </FlexLayout>
+
 
 </ContentPage>
 

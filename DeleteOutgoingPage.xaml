@@ -8,28 +8,29 @@
              x:DataType="viewmodel:AccountViewModel"
              NavigatedTo="ContentPage_NavigatedTo"
              >
-    <ScrollView>
-        <VerticalStackLayout>
-            <VerticalStackLayout IsVisible="{Binding TabIsVisible}">
+    <FlexLayout Direction="Column"
+            VerticalOptions="Fill"
+            JustifyContent="SpaceBetween">
+        <VerticalStackLayout >
+            <Frame IsVisible="{Binding TabIsNotVisible}">
+                <Label Text="No account selected"/>
+            </Frame>
 
-
+            <ScrollView MaximumHeightRequest="400">
                 <CollectionView ItemsSource="{Binding Outgoing}"
-                    SelectionMode="None"
-                    
-                    
-                    >
+                SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:RegularTransaction">
                             <Frame>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                          Tapped="TapGestureRecognizer_Tapped"
-                                                          CommandParameter="{Binding .}"/>
+                                                      Tapped="TapGestureRecognizer_Tapped"
+                                                      CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
 
 
                                 <Label
-                        Text="{Binding Name}">
+                    Text="{Binding Name}">
 
                                 </Label>
                             </Frame>
@@ -40,13 +41,14 @@
                     </CollectionView.ItemTemplate>
 
                 </CollectionView>
-                <Button Text="Delete"
-                    Command="{Binding DeleteCommand}"
-                        Clicked="Button_Clicked"/>
-            </VerticalStackLayout>
-            <Frame IsVisible="{Binding TabIsNotVisible}">
-                <Label Text="No account selected"/>
-            </Frame>
+            </ScrollView>
         </VerticalStackLayout>
-    </ScrollView>
+        <Button Text="Delete"
+                Command="{Binding DeleteCommand}"
+                    Clicked="Button_Clicked"
+            IsVisible="{Binding TabIsVisible}"/>
+
+
+    </FlexLayout>
+    
 </ContentPage>

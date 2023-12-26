@@ -24,7 +24,7 @@
 
     <StackLayout>
 
-        <VerticalStackLayout>
+        <FlexLayout Direction="Column">
             <Frame>
                 <Entry Keyboard="Text"
                Placeholder="Enter account name"
@@ -59,7 +59,7 @@
                     </Entry.Behaviors>
                 </Entry>
             </Frame>
-        </VerticalStackLayout>
+        </FlexLayout>
 
 
         <Button Text="Add Account"
