@@ -16,6 +16,9 @@
 # Mono auto generated files
 mono_crash.*
 
+# apple authorization file
+AuthKey_9H74BZ8493.p8
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
